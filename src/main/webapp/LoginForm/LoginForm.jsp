@@ -8,6 +8,25 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../common/jquery/jquery-3.6.1.min.js"></script>
 <title>Insert title here</title>
+<script>
+	function validateForm(form) {
+		if(!form.id.value){
+			alert("아이디를 입력하세요.");
+			form.id.focus();
+			return false;
+		}
+		if(form.pass.value==''){
+			alert("패스워드를 입력하세요.");
+			form.pass1.focus();
+			return false;
+		}
+	}
+</script>
+<style type="text/css">
+	.loginbtn{
+		padding: 5px;
+	}
+</style>
 </head>
 <body>
 	<%@ include file ="../Main/inc/top.jsp" %>
@@ -28,10 +47,10 @@
 				<input type="text" name="id" placeholder="아이디" />
 			</div>
 			<div>
-				<input type="password" name="pwd" placeholder="비밀번호" />
+				<input type="password" name="pass" placeholder="비밀번호" />
 			</div>
-			<div>
-				<input type="submit"  value="로그인하기" />
+			<div class="loginbtn">
+				<input type="submit"  value="로그인" />
 			</div>
 		</form>
 	</div>

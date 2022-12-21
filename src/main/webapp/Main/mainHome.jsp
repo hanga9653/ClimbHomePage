@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-
+<body class="bg-dark">
+<%@ include file ="../Main/inc/top.jsp" %>
 </body>
 </html>

@@ -18,7 +18,7 @@ header{
 }
 </style>
 </head>
-<body>
+<body class="bg-dark">
 <header class="container bg-dark">
 <div class="row">
 	<!-- 로고 -->
@@ -40,8 +40,8 @@ header{
 	<!-- 로그인 -->
 	<div class="col-1"></div>
 	<div class="mt-4 col-lg-2">
-		<a href="">로그인</a>
-		<a href="">회원가입</a>
+		<a href="#" onclick="location.href='../LoginForm/LoginForm.jsp'">로그인</a>
+		<a href="#" onclick="location.href='../regidate/RegidateForm.jsp'">회원가입</a>
 	</div>
 </div>
 </header>

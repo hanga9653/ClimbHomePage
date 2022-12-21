@@ -1,4 +1,4 @@
-package MemberTable;
+package MemberTable1;
 
 public class MemberDTO {
 	//멤버변수

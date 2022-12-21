@@ -1,11 +1,11 @@
-package MemberTable;
+package MemberTable1;
 
 import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
-import common.JDBConnect;
+import N1common.JDBConnect;
 
 public class MemberDAO extends JDBConnect{
 	
