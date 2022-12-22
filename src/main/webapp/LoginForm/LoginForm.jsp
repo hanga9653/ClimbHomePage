@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script>
 	function validateForm(form) {
-		if(!form.id.value){
+		if(form.id.value==''){
 			alert("아이디를 입력하세요.");
 			form.id.focus();
 			return false;
@@ -23,9 +23,10 @@
 	}
 </script>
 <style type="text/css">
-	.loginbtn{
+	.login{
 		padding: 5px;
 	}
+	input{width:20%;}
 </style>
 </head>
 <body>
@@ -40,19 +41,24 @@
 	<div style="width: 100%;">
 		<form action="LoginProcess.jsp" method="post" name="loginFrm"
 			onsubmit="return validateForm(this);" align="center">
-			<header>
-				<h3>로그인</h3>
-			</header>
 			<div>
-				<input type="text" name="id" placeholder="아이디" />
+				<h3 style="margin-top:108px;">喝! 클라이밍</h3>
 			</div>
-			<div>
-				<input type="password" name="pass" placeholder="비밀번호" />
+			<div class="login">
+				<input type="text" name="user_id" placeholder="아이디" />
 			</div>
-			<div class="loginbtn">
+			<div class="login">
+				<input type="password" name="user_pass" placeholder="비밀번호" />
+			</div>
+			<div class="login">
 				<input type="submit"  value="로그인" />
 			</div>
 		</form>
+		<div align="center" style="margin-bottom:108px;">
+			<a href="../regidate/RegidateForm.jsp">회원가입</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="">아이디 비밀번호 찾기</a>
+		</div>
 	</div>
 	<%
 	}else{
@@ -62,5 +68,6 @@
 	<%
 	}
 	%>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

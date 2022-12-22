@@ -32,7 +32,7 @@ public class JDBConnect {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, id, pwd);
-			System.out.println("연결 성공");
+			System.out.println("마리아 연결 성공");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

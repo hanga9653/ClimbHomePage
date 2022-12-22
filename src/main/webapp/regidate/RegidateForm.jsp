@@ -6,17 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<% MemberDAO dao = new MemberDAO(application);
-	List<String> sival = new Vector<String>();
-	sival = dao.idCheck();
-	StringBuffer abc = new StringBuffer();
-	for(int i =0; i<sival.size();i++){
-		if(abc.length()>0){
-			abc.append(',');
-		}
-		abc.append('"').append(sival.get(i)).append('"');
-	}
-%>
 <meta charset="UTF-8">
 <title>regidateForm</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -87,53 +76,29 @@ function inputEmail(frm){
         frm.email2.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
     }
 }  
-function idCheck(fn) {
-	
-	var id = document.getElementById("id").value;
-	var ilist = [<%= abc.toString()%>];
-	var chk = false;
-	for(var i=0 ; i<=ilist.length ; i++){
-		if(id==ilist[i]){
-			chk = true;
-			break;
+function idCheck(){
+	var fn = document.forms[0];
+		if(fn.id.value==""){
+			alert("아이디를 입력해주세요");
+			fn.id.focus();
 		}
-	}
-	if(fn.id.value==""){
-		alert("아이디 입력하고 눌러임마!");
-		fn.id.focus();
-	}
-	else if(chk==true){
-		alert("아이디 중복임");
-	}
-	else{
-		alert("중복없음");
-		idch = 1;
-	}
-	
+		else{
+			fn.id.readOnly = true;
+			window.open("./Idcheck.jsp?id="+fn.id.value,"idover", "width=400, height=300");
+		}
 }
 </script>
 
 <style>
 	form{font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 12px;margin: 0px auto;}
-	
 	.c_imp{color : red;}
 	.btn_search{background-color: #3d3d3d; color: #ffffff; width: 70px; height: 23px; padding:1px 0 2px;}
     .btn_search:hover{background-color: #6d6d6d;}
 </style>
 </head>
-<body class="bg-dark">
+<body>
 	<%@ include file ="../Main/inc/top.jsp" %>
 	<div class="container p-5 my-5 border">
-	<!-- 회원가입 테이블 생성 -->
-	<!-- 필수요소 	
-	아이디, 비밀번호, 비밀번호 확인 (비밀번호와 비밀번호 확인이 일치하지 않으면 return하게 해야 함
-	이름 나이 성별 이메일 전화번호 관심분야(3개 중 1개는 필수로 입력하게 해야 함) 
-	총 11개. 필수(9개)
-
-	빈 박스가 있다면 회원가입을 누르면 alert가 뜨고 빈박스로 focus하게 만들기
-	
-	마지막에 가입하기 클릭하면 insert쿼리문 실행하게 하기 
-	취소하기 하면 첫 페이지로 돌아가기 ==> main으로 -->
 	
 	<h1>회원가입</h1>
 	
@@ -144,8 +109,7 @@ function idCheck(fn) {
 				<td>
 					<input type="text" style="width: 120px;" name="id"
 					id="id"/>
-					<button type="button" class="btn_search" onclick="idCheck(this.form);">중복확인</button>
-					<!-- 아이디가 중복된다면 지워지게 하기 이미 PK라서 괜찮나? 어차피 안 만들어질텐데 흠 -->
+					<button type="button" class="btn_search" onclick="idCheck();">중복확인</button>
 				</td>
 			</tr>
 			<tr>
@@ -200,5 +164,6 @@ function idCheck(fn) {
         </table> 
 	</form>
 	</div>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

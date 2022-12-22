@@ -22,7 +22,7 @@ public class MemberDAO extends JDBConnect{
 		
 		int result= 0;
 		
-		//16개!
+		
 		try {
 			String query = "INSERT INTO climbmember VALUES(?,?,?,?,?)";
 			
@@ -68,20 +68,31 @@ public class MemberDAO extends JDBConnect{
 		return dto;
 	}
 	
-	public List<String> idCheck() {
-		List<String> ilist = new Vector<String>();
-		String query = "SELECT id FROM climbmember";
+	//아이디중복체크
+	public int selectCheckId(String id) {
+		int result= -1;
+		
 		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				ilist.add(rs.getString(1));
+			String query = "SELECT id FROM climbmember WHERE id=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result=1;
+				System.out.println("result 값:" + result);
 			}
+			else {
+				result=0;
+				System.out.println("result 값:" + result);
+			}
+			rs.close();
+			psmt.close();
+			con.close();
 		}
 		catch (Exception e) {
+			System.out.println("중복체크 중 오류 발생");
 			e.printStackTrace();
-			System.out.println("중복체크 오류");
 		}
-		return ilist;
+		return result;
 	}
 }

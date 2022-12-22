@@ -3,13 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String userId = request.getParameter("id");
-String userPwd = request.getParameter("pass");
+String userId = request.getParameter("user_id");
+String userPwd = request.getParameter("user_pass");
 
-String mysqlDriver = application.getInitParameter("mysqlDriver");
-String mysqlURL = application.getInitParameter("mysqlURL");
-String mysqlId = application.getInitParameter("mysqlId");
-String mysqlPwd = application.getInitParameter("mysqlPwd");
+String mysqlDriver = application.getInitParameter("MysqlDriver");
+String mysqlURL = application.getInitParameter("MysqlURL");
+String mysqlId = application.getInitParameter("MysqlId");
+String mysqlPwd = application.getInitParameter("MysqlPwd");
 
 MemberDAO dao = new MemberDAO(mysqlDriver, mysqlURL, mysqlId, mysqlPwd);
 MemberDTO memberDTO = dao.getMemberDTO(userId, userPwd);
