@@ -23,7 +23,7 @@
 	<form action="">
 		<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-			<!-- Indicators/dots -->
+			<!-- 슬라이드 이미지 하단 버튼 -->
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
 					class="active"></button>
@@ -31,7 +31,7 @@
 				<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 			</div>
 
-			<!-- The slideshow/carousel -->
+			<!-- 슬라이드 이미지 -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src="../image/la.jpg" alt="Los Angeles"
@@ -58,8 +58,8 @@
 				</div>
 			</div>
 
-			<!-- Left and right controls/icons -->
-			<button class="carousel-control-prev" type="button"
+			<!-- 왼쪽 오른쪽 넘기는 버튼 -->
+			<button class="carousel-control-prev" type="button" 
 				data-bs-target="#demo" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon"></span>
 			</button>

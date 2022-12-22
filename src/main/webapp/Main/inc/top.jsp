@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 <title>Insert title here</title>
 <style>
-/*  div{
+ /* div{
 	border:1px solid red;
-}  */
+} */
 header{
 	color : white;
 }
@@ -29,13 +29,13 @@ a{text-decoration-line: none;}
 <div class="container">
 	<div class="row">
 		<!-- 로고 -->
-		<div class="col-lg-2">
+		<div class="mt-2 col-lg-2">
 			<a href="../Main/mainHome.jsp"><img style="width:100px" src="https://img.freepik.com/premium-vector/rock-mountain-climbing-logo-design-concept_96807-918.jpg?w=1060" 
 				alt="喝! 클라이밍"></a>
 		</div>
 		<div class="col-1"></div>
 		<!-- 메뉴 -->
-		<div class="mt-4 col-lg-6">
+		<div class="mt-2 col-lg-6">
 			<ul class="row list-unstyled" >
 				<li class="col-lg-2" ><a href="../Main/mainHome.jsp" class="menu">Home</a></li>
 				<li class="col-lg-2"><a href="../Main/mainHome.jsp" class="menu">강사진</a></li>
@@ -47,10 +47,45 @@ a{text-decoration-line: none;}
 		</div>
 		<!-- 로그인 -->
 		<div class="col-1"></div>
-		<div class="mt-4 col-lg-2">
+		<div class="mt-2 col-lg-2">
+            <ul class="navbar-nav ms-auto text-light">
+               <%
+               if(session.getAttribute("UserId") == null){%>
+               <li class="nav-item"><a class="nav-link" onclick="location.href='../regidate/RegidateForm.jsp';">
+               <i class='bi bi-person-plus-fill' style='font-size: 20px'></i>회원가입</a></li>
+               <% 
+               }
+               else {
+               %>
+               <li class="nav-item"><a class="nav-link" >
+               <i class='bi bi-person-lines-fill' style='font-size: 20px'></i><%=session.getAttribute("UserName") %>님 환영합니다.</a></li>
+               <li class="nav-item"><a class="nav-link" href="#"><i
+                     class='bi bi-person-lines-fill' style='font-size: 20px'></i>회원정보수정</a>
+               </li>
+               <% 
+               }
+               %>
+               
+               <%
+               if(session.getAttribute("UserId") == null){%>
+               <li class="nav-item"><a class="nav-link" href="#" onclick="location.href='../Login/LoginForm.jsp';">
+               <i class='bi bi-box-arrow-in-right' style='font-size: 20px' ></i>로그인</a></li>
+               <% 
+               }
+               else {
+               %>
+               <li class="nav-item"><a class="nav-link" href="#" onclick="location.href='../Login/Logout.jsp';">
+               <i class='bi bi-box-arrow-right' style='font-size: 20px'></i>로그아웃</a></li>
+               <% 
+               }
+               %>
+            </ul>
+         </div>
+		
+		<!-- <div class="mt-4 col-lg-2">
 			<a href="#" onclick="location.href='../LoginForm/LoginForm.jsp'">로그인</a>
 			<a href="#" onclick="location.href='../regidate/RegidateForm.jsp'">회원가입</a>
-		</div>
+		</div> -->
 	</div>
 </div>
 </header>

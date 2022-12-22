@@ -70,7 +70,7 @@ public class MemberDAO extends JDBConnect{
 	
 	//아이디중복체크
 	public int selectCheckId(String id) {
-		int result= -1;
+		int result= 0;
 		
 		try {
 			String query = "SELECT id FROM climbmember WHERE id=?";
