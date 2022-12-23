@@ -51,9 +51,27 @@
 		<param-value>1234</param-value>
 	</context-param>
 	
+	<!-- 세션유지시간 설정 : web.xml에서는 분단위로 지정한다. -->
+	<session-config>
+		<session-timeout>35</session-timeout>
+	</session-config>
 	
+	<!-- 게시판 페이징 처리를 위한 파라미터 추가 -->
+	<!-- 한 페이지에 출력할 게시물의 갯수 설정 : 10개씩 출력 -->
+	<context-param>
+		<param-name>POSTS_PER_PAGE</param-name>
+		<param-value>10</param-value>
+	</context-param>
+	<!-- 한 블럭당 출력할 페이지번호의 갯수 설정 : 5페이지씩 출력 -->
+	<context-param>
+		<param-name>PAGES_PER_BLOCK</param-name>
+		<param-value>5</param-value>
+	</context-param>
 	
-	
-	
+	<!-- 파일첨부시 제한용량은 1메가로 지정한다. -->
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>1024000</param-value>
+	</context-param>
 	
 </web-app>
