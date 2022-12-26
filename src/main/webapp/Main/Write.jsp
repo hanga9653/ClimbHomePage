@@ -8,11 +8,6 @@
 <title>파일첨부형 게시판 - 글쓰기(Write)</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
-    if (form.name.value == "") {
-        alert("이름을 입력하세요.");
-        form.name.focus();
-        return false;
-    }
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
         form.title.focus();
@@ -23,26 +18,18 @@ function validateForm(form) {  // 폼 내용 검증
         form.content.focus();
         return false;
     }
-    if (form.pass.value == "") {
-        alert("비밀번호를 입력하세요.");
-        form.pass.focus();
-        return false;
-    }
 }
 </script>
 </head>
 <body>
+
 <%@ include file="../Main/inc/top.jsp"%>
-<form name="writeFrm" method="post" action="../board/write.do"
+<form name="writeFrm" method="post" action="../gallclimb/Write.do"
 	enctype="multipart/form-data"
       onsubmit="return validateForm(this);">
+      <input type="hidden" name="id" value="<%=session.getAttribute("UserId") %>" />
+      <input type="hid/den" name="b_flag" value="${param.b_flag }" />
     <table border="1" width="90%">
-        <tr>
-            <td>작성자</td>
-            <td>
-                <input type="text" name="name" style="width: 150px;" />
-            </td>
-        </tr>
         <tr>
             <td>제목</td>
             <td>
@@ -62,16 +49,10 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
         <tr>
-            <td>비밀번호</td>
-            <td>
-                <input type="password" name="pass" style="width: 100px;" />
-            </td>
-        </tr>
-        <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='../board/list.do';">
+                <button type="button" onclick="location.href='../gallclimb/List.do';">
                     목록 보기</button>
             </td>
         </tr>

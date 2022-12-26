@@ -1,17 +1,16 @@
-package Board;
+package fileupload;
 
-public class BoardDTO {
-	
-	private String num;
-	private String title;
-	private String content;
-	private String id;
- 	private String ofile;
-	private String sfile;
-	private java.sql.Date postdate;
-	private int visitcount;
-	private String b_flag; //gall(갤러리), pre(자유게시판), notice(공지)
-	
+public class MyfileDTO {
+	//멤버변수
+	private String num;		//일련번호
+	private String title;	//제목
+	private String content;	//내용
+	private String id;		//아이디
+	private String ofile;	//원본 파일명
+	private String sfile;	//저장된 파일명
+	private String postdate;//등록 날짜
+	private String visitcount;//조회수
+	private String b_flag;//카테고리
 	
 	public String getNum() {
 		return num;
@@ -49,11 +48,17 @@ public class BoardDTO {
 	public void setSfile(String sfile) {
 		this.sfile = sfile;
 	}
-	public java.sql.Date getPostdate() {
+	public String getPostdate() {
 		return postdate;
 	}
-	public void setPostdate(java.sql.Date postdate) {
+	public void setPostdate(String postdate) {
 		this.postdate = postdate;
+	}
+	public String getVisitcount() {
+		return visitcount;
+	}
+	public void setVisitcount(String visitcount) {
+		this.visitcount = visitcount;
 	}
 	public String getB_flag() {
 		return b_flag;
@@ -61,11 +66,7 @@ public class BoardDTO {
 	public void setB_flag(String b_flag) {
 		this.b_flag = b_flag;
 	}
-	public int getVisitcount() {
-		return visitcount;
-	}
-	public void setVisitcount(int visitcount) {
-		this.visitcount = visitcount;
-	}
+	
+	
 	
 }

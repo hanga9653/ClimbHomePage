@@ -68,6 +68,7 @@
 		<param-value>5</param-value>
 	</context-param>
 	
+	
 	<!-- 파일첨부시 제한용량은 1메가로 지정한다. -->
 	<context-param>
 		<param-name>maxPostSize</param-name>

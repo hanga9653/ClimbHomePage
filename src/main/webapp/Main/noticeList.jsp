@@ -5,7 +5,7 @@
 <%
 BoardDAO dao = new BoardDAO(application);
 
-String b_flag = "pre";
+String b_flag = "notice";
 
 dao.close();
 %>
