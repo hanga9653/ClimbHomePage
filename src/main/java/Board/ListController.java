@@ -31,6 +31,7 @@ public class ListController extends HttpServlet{
 		String searchField = req.getParameter("searchField");
 		String searchWord = req.getParameter("searchWord");
 		String b_flag = req.getParameter("b_flag");
+		map.put("b_flag", b_flag);
 		
 		if(searchWord != null) {
 			//검색어가 있는 경우 Map에 파라미터를 저장한다.
@@ -75,7 +76,7 @@ public class ListController extends HttpServlet{
 		/* 페이지 처리 end */
 		
 		//현재 페이지에 출력할 게시물을 select한다.
-		List<BoardDTO> boardLists = dao.selectListPage(map, b_flag);
+		List<BoardDTO> boardLists = dao.selectListPage(map);
 		//커넥션풀에 자원 반납.
 		dao.close();
 		

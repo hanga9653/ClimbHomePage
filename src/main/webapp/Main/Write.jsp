@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSP최상단에 인클루드 하여 로그인 정보가 없다면 즉시
+로그인 페이지로 이동시킨다. -->
+<%@ include file="./IsLoggedIn.jsp"%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일첨부형 게시판 - 글쓰기(Write)</title>
+<title>회원제 게시판</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
@@ -22,13 +24,19 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-
 <%@ include file="../Main/inc/top.jsp"%>
-<form name="writeFrm" method="post" action="../gallclimb/Write.do"
-	enctype="multipart/form-data"
+<%
+String boardTitle = "";
+if(request.getParameter("b_flag").equals("notice")){
+	boardTitle = "공지";
+}
+else if(request.getParameter("b_flag").equals("pre")){
+	boardTitle = "자유게시판";
+}
+%>
+<form name="writeFrm" method="post" action="WriteProcess.jsp"
       onsubmit="return validateForm(this);">
-      <input type="hidden" name="id" value="<%=session.getAttribute("UserId") %>" />
-      <input type="hid/den" name="b_flag" value="${param.b_flag }" />
+<input type="hid den" name="b_flag" value="${param.b_flag }" />
     <table border="1" width="90%">
         <tr>
             <td>제목</td>
@@ -43,21 +51,15 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
         <tr>
-            <td>첨부파일</td>
-            <td>
-                <input type="file" name="ofile" style="width: 90%;" />
-            </td>
-        </tr>
-        <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='../gallclimb/List.do';">
+                <button type="button" onclick="location.href='List.jsp';">
                     목록 보기</button>
             </td>
         </tr>
     </table>
-    <%@ include file="../Main/inc/Bottom.jsp"%>
 </form>
+<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

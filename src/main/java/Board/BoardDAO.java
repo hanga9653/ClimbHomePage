@@ -19,7 +19,7 @@ public class BoardDAO extends DBConnPool{
 	//게시물 갯수 카운트
 	public int selectCount(Map<String, Object> map) {
 		int totalCount = 0;
-		String query = "SELECT COUNT(*) FROM multiboard";
+		String query = "SELECT COUNT(*) FROM pre";
 		if(map.get("searchWord")!=null) {
 			query += " WHERE "+ map.get("searchField") + " "
 					+ " LIKE '%" + map.get("searchWord") + "%'";
@@ -39,59 +39,57 @@ public class BoardDAO extends DBConnPool{
 	}
 	
 	 //조건에 맞는 게시물을 목록에 출력하기 위한 쿼리문을 실행한다.
-   public List<BoardDTO> selectListPage(Map<String, Object> map, String b_flag) {
-      List<BoardDTO> board = new Vector<BoardDTO>();
-      
-      String query = "SELECT * FROM multiboard WHERE b_flag=? ";
-      
-      if (map.get("searchWord") != null) {
-         query += " AND " + map.get("searchField") + " "
-               + " LIKE '%" + map.get("searchWord") + "%'";
-      }
-      query += " ORDER BY num DESC LIMIT ?, ?";
-            
-      
-      try {
-         psmt = con.prepareStatement(query);
-         psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-         psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-         psmt.setString(3, b_flag);
-         rs = psmt.executeQuery();
-         
-         while(rs.next()) {
-        	 BoardDTO dto = new BoardDTO();
-            
-            dto.setNum(rs.getString("num"));
-            dto.setTitle(rs.getString("title"));
-            dto.setContent(rs.getString("content"));
-            dto.setId(rs.getString("id"));
-            dto.setOfile(rs.getString("ofile"));
-            dto.setSfile(rs.getString("sfile"));
-            dto.setPostdate(rs.getDate("postdate"));
-            dto.setVisitcount(rs.getInt("visitcount"));
-            dto.setB_flag(rs.getString("b_flag"));
-            
-            //List컬렉션에 DTO객체를 추가한다. 
-            board.add(dto);
-         }
+	   public List<BoardDTO> selectListPage(Map<String, Object> map) {
+	      List<BoardDTO> board = new Vector<BoardDTO>();
+	      
+	      String query = "SELECT * FROM pre ";
+	      
+	      if (map.get("searchWord") != null) {
+	         query += " WHERE " + map.get("searchField") + " "
+	               + " LIKE '%" + map.get("searchWord") + "%'";
+	      }
+	      query += " ORDER BY num DESC LIMIT ?, ?";
+	            
+	      
+	      try {
+	         psmt = con.prepareStatement(query);
+	         psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+	         psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+	         rs = psmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            BoardDTO dto = new BoardDTO();
+	            
+	            dto.setNum(rs.getString("num"));
+	            dto.setTitle(rs.getString("title"));
+	       	    dto.setContent(rs.getString("content")); 
+	       	    dto.setId(rs.getString("id"));
+	       	    dto.setOfile(rs.getString("ofile")); 
+	       	    dto.setSfile(rs.getString("sfile"));
+	       	    dto.setPostdate(rs.getDate("postdate"));
+	       	    dto.setVisitcount(rs.getInt("visitcount"));
+	            //List컬렉션에 DTO객체를 추가한다. 
+	            board.add(dto);
+	         }
 
-      } 
-      catch (Exception e) {
-         System.out.println("게시물 조회 중 예외 발생");
-         e.printStackTrace();
-      }
-      
-      return board;
-   }
+	      } 
+	      catch (Exception e) {
+	         System.out.println("게시물 조회 중 예외 발생");
+	         e.printStackTrace();
+	      }
+	      
+	      return board;
+	   }
+	   
    
    //작성하기
    public int insertWrite(BoardDTO dto) {
 	   int result = 0;
 	   try { 
-		   String query = "INSERT INTO multiboard ( "
-				   + " id, title, content, ofile, sfile, b_flag) "
+		   String query = "INSERT INTO pre ( "
+				   + " id, title, content, ofile, sfile) "
 				   + " VALUES ( "
-				   + " ?, ?, ?, ?, ?, ?)";
+				   + " ?, ?, ?, ?, ?)";
 		   
 		   psmt = con.prepareStatement(query);
 		   psmt.setString(1, dto.getId());
@@ -99,7 +97,6 @@ public class BoardDAO extends DBConnPool{
 		   psmt.setString(3, dto.getContent());
 		   psmt.setString(4, dto.getOfile());
 		   psmt.setString(5, dto.getSfile());
-		   psmt.setString(6, dto.getB_flag());
 		   
 		   result = psmt.executeUpdate();
 	   }
@@ -113,7 +110,7 @@ public class BoardDAO extends DBConnPool{
    //게시물 내용보기
    public BoardDTO selectView(String num) {
 	   BoardDTO dto = new BoardDTO();
-	   String query = "SELECT * FROM multiboard WHERE num=?";
+	   String query = "SELECT * FROM pre WHERE num=?";
 	   try {
 		   psmt = con.prepareStatement(query);
 		   psmt.setString(1, num);
@@ -127,7 +124,6 @@ public class BoardDAO extends DBConnPool{
 			   dto.setSfile(rs.getString("sfile"));
 			   dto.setVisitcount(rs.getInt("visitcount"));
 			   dto.setPostdate(rs.getDate("postdate"));
-			   dto.setB_flag(rs.getString("b_flag"));
 		   }
 	   }
 	   catch (Exception e) {
@@ -139,7 +135,7 @@ public class BoardDAO extends DBConnPool{
    
    //게시물의 조회수증가
    public void updateVisitCount(String num) {
-	   String query = "UPDATE multiboard SET "
+	   String query = "UPDATE pre SET "
 			   + " visitcount=visitcount+1 "
 			   + " WHERE num=?";
 	   try {
@@ -156,7 +152,7 @@ public class BoardDAO extends DBConnPool{
    public int deletePost(String num) {
 	   int result = 0;
 	   try {
-		   String query = "DELETE FROM multiboard WHERE num=?";
+		   String query = "DELETE FROM pre WHERE num=?";
 		   psmt = con.prepareStatement(query);
 		   psmt.setString(1, num);
 		   result = psmt.executeUpdate();
@@ -178,7 +174,7 @@ public class BoardDAO extends DBConnPool{
 		   //쿼리문 템플릿 준비
 	       //일련번호와 패스워드까지 where절에 추가항 둘 다 일치할 때만
 	       //수정처리된다.
-		   String query = "UPDATE multiboard"
+		   String query = "UPDATE pre"
 				   + " SET title=?, content=?, ofile=?, sfile=? "
 				   + " WHERE num=?";
 		   
@@ -203,7 +199,7 @@ public class BoardDAO extends DBConnPool{
 	   boolean isCorr = true;
 	   try {
 		   //일련번화와 패스워드가 일치하는 게시물이 있는지 확인한다.
-		   String sql = "SELECT COUNT(*) FROM multiboard WHERE num=?";
+		   String sql = "SELECT COUNT(*) FROM pre WHERE num=?";
 		   psmt = con.prepareStatement(sql);
 		   psmt.setString(1, num);
 		   rs = psmt.executeQuery();

@@ -40,13 +40,12 @@ a{text-decoration-line: none;}
 		<!-- 메뉴 -->
 		<div class="mt-5 col-lg-6">
 			<ul class="row list-unstyled" >
-				<li class="col-lg-1"></li>
 				<li class="col-lg-2" ><a href="../Main/mainHome.jsp" class="menu">Home</a></li>
 				<li class="col-lg-2"><a href="../Main/mainHome.jsp" class="menu">강사진</a></li>
 				<li class="col-lg-2"><a href="../Main/mainHome.jsp" class="menu">이용권</a></li>
-				<li class="col-lg-2"><a href="../gallclimb/List.do?b_flag=pre" class="menu">자유게시판</a></li>
-				<li class="col-lg-2"><a href="../gallclimb/List.do?b_flag=notice" class="menu">공지</a></li>
-				<li class="col-lg-1"></li>
+				<li class="col-lg-2"><a href="../Main/List.jsp?b_flag=pre" class="menu">자유게시판</a></li>
+				<li class="col-lg-2"><a href="../Main/List.jsp?b_flag=notice" class="menu">공지사항</a></li>
+				<li class="col-lg-2"><a href="../Main/Map.jsp" class="menu">오시는 길</a></li>
 			</ul>
 		</div>
 		<!-- 로그인 -->
