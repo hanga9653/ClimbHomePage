@@ -35,6 +35,7 @@ else if(request.getParameter("b_flag").equals("pre")){
 }
 %>
 <form name="writeFrm" method="post" action="WriteProcess.jsp"
+	enctype="multipart/form-data"
       onsubmit="return validateForm(this);">
 <input type="hid den" name="b_flag" value="${param.b_flag }" />
     <table border="1" width="90%">
@@ -48,6 +49,12 @@ else if(request.getParameter("b_flag").equals("pre")){
             <td>내용</td>
             <td>
                 <textarea name="content" style="width: 90%; height: 100px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>첨부파일</td>
+            <td>
+                <input type="file" name="ofile" style="width: 90%;" />
             </td>
         </tr>
         <tr>

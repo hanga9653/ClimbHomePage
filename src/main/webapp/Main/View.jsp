@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="mo1board.BoardDTO"%>
 <%@page import="mo1board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,6 +53,11 @@ function deletePost() {
             <td>내용</td>
             <td colspan="3" height="100">
                 <%= dto.getContent().replace("\r\n", "<br/>") %>
+                <%if(dto.getSfile()!=null){ %>
+                <p>
+                	<img src="../UploadsDirectory/<%=dto.getSfile() %>" />
+                </p>
+                <%} %>
             </td> 
         </tr>
         <tr>
@@ -60,7 +66,7 @@ function deletePost() {
             if(session.getAttribute("UserId")!=null &&
             	dto.getId().equals(session.getAttribute("UserId").toString())){
             %>
-                <button type="button" onclick="location.href='Edit.jsp?num=<%= dto.getNum() %>';">
+                <button type="button" onclick="location.href='Edit.jsp?b_flag=<%=dto.getB_flag() %>&num=<%= dto.getNum() %>';">
                 수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%

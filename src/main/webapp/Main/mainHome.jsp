@@ -1,5 +1,15 @@
+<%@page import="mo1board.BoardDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="mo1board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+BoardDAO dao = new BoardDAO(application);
+
+List<BoardDTO> bLists = dao.selectList();
+
+dao.close();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +52,6 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="../image/me1.jpg" alt="gall"
-						class="mx-auto d-block d-block" style="width: 100% hight:40%">
-					<div class="carousel-caption">
-						<h3>GAR</h3>
-						<p>Thank you, GALL!</p>
-					</div>
-				</div>
-				<div class="carousel-item">
 					<img
 						src="https://ldb-phinf.pstatic.net/20200517_50/1589691271053aqnWt_JPEG/KakaoTalk_20200517_124435951_04.jpg?type=f804_408_60_sharpen"
 						alt="New York" class="mx-auto d-block d-block"
@@ -82,8 +84,33 @@
 					alt="풍부한 경험을 가진 대학교수 전문의료진 아이라이크닥터는 보건복지부에서 지정한 의료기관입니다.">
 			</p>
 		</div>
-
-
+		<div>
+			<h2>공지사항</h2>
+			<%
+				int cnt = 0;
+				for(BoardDTO dto : bLists){
+					if(cnt==0){
+			%>
+			<div>
+				<%
+					}else{
+				%>
+				<div>
+					<%
+						}
+					%>
+					<table align="center" style="border:1px solid black;">
+						<tr>
+							<td><a href="View.jsp?b_flag=<%= dto.getB_flag() %>&num=<%= dto.getNum() %>" ><%=dto.getTitle() %></a></td>
+						</tr>
+					</table>
+				</div>
+				<%
+					cnt++;
+				}
+				%>
+			</div>
+		</div>
 		
 	</form>
 	<%@ include file="../Main/inc/Bottom.jsp"%>

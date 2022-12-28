@@ -65,5 +65,6 @@ function pwFind(){
 			</table>
 		</form>
 	</div>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

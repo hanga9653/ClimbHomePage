@@ -56,5 +56,6 @@ function idFind(){
 			</table>
 		</form>
 	</div>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

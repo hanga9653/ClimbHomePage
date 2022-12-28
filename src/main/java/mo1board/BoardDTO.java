@@ -8,6 +8,8 @@ public class BoardDTO {
     private String content;
     private String id;
     private java.sql.Date postdate;
+    private String ofile;
+    private String sfile;
     private String visitcount;
     /*
     board테이블에  name컬럼은 존재하지 않으나, 목록에 작성자의 이름을 
@@ -70,5 +72,17 @@ public class BoardDTO {
 	}
 	public void setB_flag(String b_flag) {
 		this.b_flag = b_flag;
+	}
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
 	}
 }

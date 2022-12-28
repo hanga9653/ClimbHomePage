@@ -21,7 +21,7 @@ int affected = dao.updateEdit(dto);
 dao.close();
 
 if(affected == 1){
-	response.sendRedirect("View.jsp?b_flag="+b_flag+"&num=" + dto.getNum());
+	response.sendRedirect("View.jsp?b_flag="+dto.getB_flag()+"&num=" + dto.getNum());
 }
 else{
 	JSFunction.alertBack("수정하기에 실패하였습니다.", out);

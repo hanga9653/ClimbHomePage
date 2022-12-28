@@ -44,7 +44,7 @@ a{text-decoration-line: none;}
 				<li class="col-lg-2"><a href="../Main/mainHome.jsp" class="menu">강사진</a></li>
 				<li class="col-lg-2"><a href="../Main/mainHome.jsp" class="menu">이용권</a></li>
 				<li class="col-lg-2"><a href="../Main/List.jsp?b_flag=pre" class="menu">자유게시판</a></li>
-				<li class="col-lg-2"><a href="../Main/List.jsp?b_flag=notice" class="menu">공지사항</a></li>
+				<li class="col-lg-2"><a href="../Main/adminList.jsp?b_flag=notice" class="menu">공지사항</a></li>
 				<li class="col-lg-2"><a href="../Main/Map.jsp" class="menu">오시는 길</a></li>
 			</ul>
 		</div>
@@ -66,8 +66,6 @@ a{text-decoration-line: none;}
                <!-- <li class="mbregi nav-item"> <i class='bi bi-person-lines-fill' style='font-size: 9px'></i></li> -->
                <li class="mbregi nav-item">
                		<a class="nav-link" ><%=session.getAttribute("UserName") %>님 환영합니다.</a>
-               		<a class="nav-link" href="#"><i
-                    class='bi bi-person-lines-fill' style='font-size: 9px'></i>회원정보수정</a>
                </li>
                 <li class="mbregi nav-item"><a class="nav-link" href="#" onclick="location.href='../LoginForm/Logout.jsp';">
                <i class='bi bi-box-arrow-right' style='font-size: 9px'></i>로그아웃</a></li>

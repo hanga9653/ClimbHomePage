@@ -30,7 +30,7 @@
                                  .getElementById('map'), // 지도를 표시할 div 
                            mapOption = {
                               center : new kakao.maps.LatLng(
-                                    37.569125, 126.984655), // 지도의 중심좌표
+                            		  37.6151568, 127.0207209), // 지도의 중심좌표
                               level : 3
                            // 지도의 확대 레벨
                            };
@@ -41,7 +41,7 @@
 
                            //마커가 표시될 위치입니다 
                            var markerPosition = new kakao.maps.LatLng(
-                                 37.569125, 126.984655);
+                        		   37.6151568, 127.0207209);
 
                            // 마커를 생성합니다
                            var marker = new kakao.maps.Marker({
@@ -63,8 +63,7 @@
                <ul class="list-unstyled mb-none row text-center">
                   <li class="col-sm-4 col-xs-12">
                      <h5 class="dft mb-none font-weight-light">
-                        <span class="font-weight-bold f_pop">ADD.</span> 서울특별시 종로구 번지 3호
-                        4 KR 서울특별시 종로구 관철동 180 5 층
+                        <span class="font-weight-bold f_pop">ADD.</span> 서울특별시 강북구 어딘가
                      </h5>
                   </li>
                   <li class="col-sm-4 col-xs-12">

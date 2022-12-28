@@ -54,6 +54,7 @@ function validateForm(form) {  // 폼 내용 검증
       반드시 필요하다.
        -->
       <input type="hid-den" name="num" value="<%= dto.getNum() %>" />
+      <input type="hid-den" name="b_flag" value="<%= b_flag %>" />
     <table border="1" width="90%">
         <tr>
             <td>제목</td>
@@ -72,7 +73,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='List.jsp?b_flag=${param.b_flag}';">
+                <button type="button" onclick="location.href='List.jsp?b_flag=<%=b_flag%>';">
                     목록 보기</button>
             </td>
         </tr>

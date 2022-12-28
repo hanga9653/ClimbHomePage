@@ -84,16 +84,18 @@ public class BoardDAO extends JDBConnect {
         try {
         	//인파라미터가 있는 동적 쿼리문 작성(사용자의 입력에 따라 달라짐)
             String query = "INSERT INTO multiboard ( "
-                         + " title, content, id, b_flag, visitcount) "
+                         + " title, content, id, ofile, sfile, b_flag, visitcount) "
                          + " VALUES ( "
-                         + " ?, ?, ?, ?, 0)";  
+                         + " ?, ?, ?, ?, ?, ?, 0)";  
             //동적쿼리문 실행을 위한 prepared객체 생성
             psmt = con.prepareStatement(query);   
             //인파라미터 설정
             psmt.setString(1, dto.getTitle());  
             psmt.setString(2, dto.getContent());
             psmt.setString(3, dto.getId());
-            psmt.setString(4, dto.getB_flag());//플레그 추가
+            psmt.setString(4, dto.getOfile());
+            psmt.setString(5, dto.getSfile());
+            psmt.setString(6, dto.getB_flag());//플레그 추가
             //쿼리문실행 : 행에 영향을 미치는 쿼리이므로 executeUpdate()메서드 사용함.
             //	입력에 성공하면 1, 실패하면 0을 반환한다. 
             result = psmt.executeUpdate(); 
@@ -125,7 +127,9 @@ public class BoardDAO extends JDBConnect {
                 dto.setContent(rs.getString("content"));//컬럼명을 통해 값 인출
                 dto.setPostdate(rs.getDate("postdate"));//날짜타입이므로 getDate()로 인출
                 dto.setId(rs.getString("id"));
-                dto.setVisitcount(rs.getString(6));
+                dto.setOfile(rs.getString("ofile"));
+                dto.setSfile(rs.getString("sfile"));
+                dto.setVisitcount(rs.getString(8));
                 dto.setB_flag(rs.getString("b_flag"));//DTO에 b_flag추가
                 dto.setName(rs.getString("name")); 
             }
@@ -197,17 +201,18 @@ public class BoardDAO extends JDBConnect {
     public List<BoardDTO> selectListPage(Map<String, Object> map) {
         List<BoardDTO> bbs = new ArrayList<BoardDTO>();  
         
-        String query = "SELECT * FROM multiboard ";
+        String query = "SELECT * FROM multiboard WHERE b_flag=? ";
         if(map.get("searchWord") != null) {
-           query += " WHERE " + map.get("searchField")
+           query += " AND " + map.get("searchField")
                  + "   LIKE '%" + map.get("searchWord") + "%' ";
         }
         query += " ORDER BY num DESC LIMIT ?, ? ";
         	
         try {
             psmt = con.prepareStatement(query);
-            psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-            psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+            psmt.setString(1, map.get("b_flag").toString());
+            psmt.setInt(2, Integer.parseInt(map.get("start").toString()));
+            psmt.setInt(3, Integer.parseInt(map.get("end").toString()));
 
             rs = psmt.executeQuery();
             while (rs.next()) {
@@ -230,6 +235,32 @@ public class BoardDAO extends JDBConnect {
         }
         
         return bbs;
+    }
+    
+    public List<BoardDTO> selectList(){
+    	List<BoardDTO> nobo = new Vector<BoardDTO>();
+    	String query = "SELECT * FROM multiboard "
+    			+ " WHERE b_flag='notice' "
+    			+ " ORDER BY postdate DESC LIMIT 5";
+    	try {
+    		stmt = con.createStatement();
+    		rs = stmt.executeQuery(query);
+    		
+    		while(rs.next()) {
+    			BoardDTO dto = new BoardDTO();
+    			
+    			dto.setNum(rs.getString("num"));
+    			dto.setTitle(rs.getString("title"));
+    			dto.setB_flag(rs.getString("b_flag"));
+    			
+    			 nobo.add(dto);
+    		}
+    	}
+    	catch (Exception e) {
+    		System.out.println("조회중 예외발생");
+    		e.printStackTrace();
+    	}
+    	return nobo;
     }
     
 }

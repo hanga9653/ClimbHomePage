@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 
 import N1common.JDBConnect;
+import mo1board.BoardDTO;
 
 public class MemberDAO extends JDBConnect{
 	
@@ -42,6 +43,7 @@ public class MemberDAO extends JDBConnect{
 		}
 		return result;
 	}
+	
 	
 	//로그인용
 	public MemberDTO getMemberDTO(String uid, String upass) {
