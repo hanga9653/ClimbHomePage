@@ -25,7 +25,7 @@ function validateForm(form) {  // 폼 내용 검증
 </head>
 <body>
 <%@ include file="../Main/inc/top.jsp"%>
-<%
+<%-- <%
 String boardTitle = "";
 if(request.getParameter("b_flag").equals("notice")){
 	boardTitle = "공지";
@@ -33,7 +33,7 @@ if(request.getParameter("b_flag").equals("notice")){
 else if(request.getParameter("b_flag").equals("pre")){
 	boardTitle = "자유게시판";
 }
-%>
+%> --%>
 <form name="writeFrm" method="post" action="WriteProcess.jsp"
 	enctype="multipart/form-data"
       onsubmit="return validateForm(this);">

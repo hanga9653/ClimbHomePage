@@ -159,7 +159,7 @@ function idCheck(){
                 <td align="center">                    
                     <input type="submit" value="회원가입" class="btn_submit" />
                     &nbsp;&nbsp;
-                    <input type="reset" value="취소" class="btn_cancel" />
+                    <input type="reset" value="취소" onclick="location.href='../Main/mainHome.jsp'" />
                 </td>
             </tr>
         </table> 
