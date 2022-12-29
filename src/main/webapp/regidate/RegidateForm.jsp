@@ -83,7 +83,7 @@ function idCheck(){
 			fn.id.focus();
 		}
 		else{
-			fn.id.readOnly = true;
+			//fn.id.readOnly = true;
 			window.open("./Idcheck.jsp?id="+fn.id.value,"idover", "width=400, height=300");
 		}
 		idch=1;
