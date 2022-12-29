@@ -44,11 +44,12 @@ dao.close();
 			<!-- 슬라이드 이미지 -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="../image/la.jpg" alt="Los Angeles"
+					<img src="../image/mw2.jpg" alt="Los Angeles"
 						class="mx-auto d-block d-block" style="width: 100% hight:40%">
 					<div class="carousel-caption">
-						<h3>Los Angeles</h3>
-						<p>We had such a great time in LA!</p>
+						<h3>재밌따 클라이밍!
+						style="color:black">같이 갈 사람 구합니다~
+						</h3>
 					</div>
 				</div>
 				<div class="carousel-item">
